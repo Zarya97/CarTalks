@@ -8,12 +8,12 @@ export default function HomeFeed({ data }) {
 
   const searchItems = (searchValue) => {
     setSearchInput(searchValue);
-    let filteredPosts = post.filter(function (item) {
-      return item.title.startsWith(searchValue);
-    });
+    let filteredPosts = data.filter((item) =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
     setPost(filteredPosts);
   };
-
+  
   useEffect(() => {
     setPost(data);
   }, [data]);
@@ -47,12 +47,18 @@ export default function HomeFeed({ data }) {
       <NavBar />
 
       <div className="HomeFeed">
-        <input
-          className="searchInput"
-          type="text"
-          placeholder="Search..."
-          onChange={(inputString) => searchItems(inputString.target.value)}
-        />
+      <input
+        className="searchInput"
+        type="text"
+        placeholder="Search..."
+        onChange={(event) => searchItems(event.target.value)}
+      />
+      {post.map((item) => (
+        <div key={item.id}>
+          <h2>{item.title}</h2>
+          <p>{item.body}</p>
+        </div>
+      ))}
 
         <div className="sortButtonGroup">
         <button className="sortButton" onClick={sortDataNewest}>Newest</button>
