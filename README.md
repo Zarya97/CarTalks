@@ -15,7 +15,7 @@ The following **required** functionality is completed:
 - [x] **A home feed displaying previously created posts**
 - [x] **By default, the time created, title, and number of upvotes for each post is shown on the feed**
 - [x] **Clicking on a post shall direct the user to a new page for the selected post**
-- [ ] **Users can sort posts by either their created time or upvotes count**
+- [x] **Users can sort posts by either their created time or upvotes count**
 - [x] **Users can search for posts by title**
 - [x] **A separate post page for each created post, where any additional information is shown is linked whenever a user clicks a post**
 - [x] **Users can leave comments underneath a post on the post's separate page**
@@ -24,7 +24,7 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] Users can only edit and deleted posts or delete comments by entering the secret key, which is set by the user during post creation
+- [x] Users can only edit and deleted posts or delete comments by entering the secret key, which is set by the user during post creation
 - [ ] Upon launching the web app, the user is assigned a random user ID. It will be associated with all posts and comments that they make and displayed on them.
 - [ ] Users can repost a previous post by referencing its post ID. On the post page of the new post, the referenced post is displayed and linked, creating a thread
 - [ ] Users can customize the interface of the web app

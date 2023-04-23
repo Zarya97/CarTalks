@@ -9,7 +9,7 @@ export default function Post(props) {
       <p>{props.upvote_count} upvotes</p>
 
       <Link to={"/" + props.id}>
-        <button className="postButton">More Info</button>
+        <button className="postButton">View Post</button>
       </Link>
     </div>
   );

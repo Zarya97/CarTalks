@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../client";
 
 export default function PostDetails(props) {
-
+  const [securityCode, setSecurityCode] = useState("");
   const [upvotes, setUpvotes] = useState(props.details.upvote_count);
+  const [secretCode, setSecretCode] = useState("");
 
   const updateUpvotes = async (event) => {
     event.preventDefault();
@@ -20,12 +21,11 @@ export default function PostDetails(props) {
       console.log(error);
     } else {
       setUpvotes(count);
-      props.details.upvote_count = count
+      props.details.upvote_count = count;
     }
-
   };
 
-  const Downvotes = async (event) => {
+  const downvotes = async (event) => {
     event.preventDefault();
     var count = upvotes - 1;
     const { error } = await supabase
@@ -39,10 +39,26 @@ export default function PostDetails(props) {
       console.log(error);
     } else {
       setUpvotes(count);
-      props.details.upvote_count = count
+      props.details.upvote_count = count;
     }
-
   };
+
+  const fetchSecretCode = async () => {
+    const { data, error } = await supabase
+      .from("posts")
+      .select("secret_code")
+      .eq("id", props.details.id);
+
+    if (error) {
+      console.log(error);
+    } else {
+      setSecretCode(data[0].secret_code);
+    }
+  };
+
+  useEffect(() => {
+    fetchSecretCode();
+  }, []);
 
   return (
     <div className="PostDetails">
@@ -51,13 +67,28 @@ export default function PostDetails(props) {
       <p>{props.details.content}</p>
       <p>{upvotes} upvotes</p>
 
-      <Link to={"edit/" + props.details.id}>
-        <button className="postButton">Edit</button>
-      </Link>
-      <button className="postButton" onClick={updateUpvotes}>⬆️</button>
-      <button className="postButton" onClick={Downvotes}>⬇️</button>
+      <input
+        type="text"
+        placeholder="Enter security code"
+        value={securityCode}
+        onChange={(event) => setSecurityCode(event.target.value)}
+      />
+      {securityCode === secretCode ? (
+        <Link to={"edit/" + props.details.id}>
+          <button className="postButton">Edit/Delete</button>
+        </Link>
+      ) : (
+        <p>
+          Enter secret key to Edit/Delete
+        </p>
+      )}
 
+      <button className="postButton" onClick={updateUpvotes}>
+        ⬆️
+      </button>
+      <button className="postButton" onClick={downvotes}>
+        ⬇️
+      </button>
     </div>
   );
-
 }

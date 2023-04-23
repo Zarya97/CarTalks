@@ -8,6 +8,7 @@ export default function CreatePost() {
     title: "",
     content: "",
     image_url: "",
+    secret_code: "",
     upvote_count: 0,
   });
 
@@ -31,6 +32,7 @@ export default function CreatePost() {
         content: post.content,
         image_url: post.image_url,
         upvote_count: post.upvote_count,
+        secret_code: post.secret_code,
       })
       .select();
 
@@ -74,6 +76,17 @@ export default function CreatePost() {
             id="image_url"
             name="image_url"
             value={post.image_url}
+            onChange={handleChange}
+          />
+          <br />
+          <br />
+          <label>Secret Code</label>
+          <br />
+          <input
+            type="text"
+            id="secret_code"
+            name="secret_code"
+            value={post.secret_code}
             onChange={handleChange}
           />
           <br />
