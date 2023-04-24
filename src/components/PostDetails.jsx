@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../client";
+import Video from "./Video";
 
 export default function PostDetails(props) {
   const [securityCode, setSecurityCode] = useState("");
@@ -63,7 +64,8 @@ export default function PostDetails(props) {
   return (
     <div className="PostDetails">
       <h2>{props.details.title}</h2>
-      <img src={props.details.image_url} width="500" height="500" />
+      {props.details.image_url && <img src={props.details.image_url}/>}
+      {props.details.video_url && <Video videoId={props.details.video_url} />}
       <p>{props.details.content}</p>
       <p>{upvotes} upvotes</p>
 

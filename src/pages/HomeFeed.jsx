@@ -53,12 +53,6 @@ export default function HomeFeed({ data }) {
         placeholder="Search..."
         onChange={(event) => searchItems(event.target.value)}
       />
-      {post.map((item) => (
-        <div key={item.id}>
-          <h2>{item.title}</h2>
-          <p>{item.body}</p>
-        </div>
-      ))}
 
         <div className="sortButtonGroup">
         <button className="sortButton" onClick={sortDataNewest}>Newest</button>
@@ -74,6 +68,7 @@ export default function HomeFeed({ data }) {
               title={post.title}
               content={post.content}
               image_url={post.image_url}
+              video_url={post.video_url}
               upvote_count={post.upvote_count}
             />
           ))

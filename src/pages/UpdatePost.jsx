@@ -10,6 +10,7 @@ export default function UpdatePost({ data }) {
     title: "",
     content: "",
     image_url: "",
+    video_url: "",
     upvote_count: 0,
   });
 
@@ -19,6 +20,7 @@ export default function UpdatePost({ data }) {
       title: result.title,
       content: result.content,
       image_url: result.image_url,
+      video_url: result.video_url,
       upvote_count: result.upvote_count,
     });
   }, [data, id]);
@@ -41,6 +43,7 @@ export default function UpdatePost({ data }) {
         title: post.title,
         content: post.content,
         image_url: post.image_url,
+        video_url: post.video_url,
         upvote_count: post.upvote_count,
       })
       .eq("id", id);
@@ -97,6 +100,17 @@ export default function UpdatePost({ data }) {
             id="image_url"
             name="image_url"
             value={post.image_url}
+            onChange={handleChange}
+          />
+          <br />
+          <br />
+          <label>Video URL</label>
+          <br />
+          <input
+            type="text"
+            id="video_url"
+            name="video_url"
+            value={post.video_url}
             onChange={handleChange}
           />
           <br />

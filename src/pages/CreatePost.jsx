@@ -8,6 +8,7 @@ export default function CreatePost() {
     title: "",
     content: "",
     image_url: "",
+    video_url: "",
     secret_code: "",
     upvote_count: 0,
   });
@@ -31,6 +32,7 @@ export default function CreatePost() {
         title: post.title,
         content: post.content,
         image_url: post.image_url,
+        video_url: post.video_url,
         upvote_count: post.upvote_count,
         secret_code: post.secret_code,
       })
@@ -76,6 +78,17 @@ export default function CreatePost() {
             id="image_url"
             name="image_url"
             value={post.image_url}
+            onChange={handleChange}
+          />
+          <br />
+          <br />
+          <label>Video URL</label>
+          <br />
+          <input
+            type="text"
+            id="video_url"
+            name="video_url"
+            value={post.video_url}
             onChange={handleChange}
           />
           <br />
