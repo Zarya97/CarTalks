@@ -80,9 +80,9 @@ export default function PostDetails(props) {
         <p>{props.details.content}</p>
         <p>{upvotes} upvotes</p>
 
-        <input
-          type="text"
-          placeholder="Enter security code"
+        <input className="secretCode"
+          type="password"
+          placeholder="Enter secret code"
           value={securityCode}
           onChange={(event) => setSecurityCode(event.target.value)}
         />
@@ -92,14 +92,14 @@ export default function PostDetails(props) {
           </Link>
         ) : (
           <p>
-            Enter secret key to Edit/Delete
+            Enter secret code to Edit/Delete
           </p>
         )}
 
-        <button className="postButton" onClick={updateUpvotes}>
+        <button className="postButton" onClick={updateUpvotes} title="Up Vote">
           ⬆️
         </button>
-        <button className="postButton" onClick={downvotes}>
+        <button className="postButton" onClick={downvotes} title="Down Vote">
           ⬇️
         </button>
         </>
