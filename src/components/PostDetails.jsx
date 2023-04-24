@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../client";
 import Video from "./Video";
+import ReactLoading from "react-loading";
 
 export default function PostDetails(props) {
   const [securityCode, setSecurityCode] = useState("");
@@ -61,36 +62,48 @@ export default function PostDetails(props) {
     fetchSecretCode();
   }, []);
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   return (
     <div className="PostDetails">
-      <h2>{props.details.title}</h2>
-      {props.details.image_url && <img src={props.details.image_url}/>}
-      {props.details.video_url && <Video videoId={props.details.video_url} />}
-      <p>{props.details.content}</p>
-      <p>{upvotes} upvotes</p>
+      {loading && <ReactLoading type={'spin'} color={'#000000'} height={'20%'} width={'20%'} />
+}
+      {!loading && (
+        <>
+        <h2>{props.details.title}</h2>
+        {props.details.image_url && <img src={props.details.image_url}/>}
+        {props.details.video_url && <Video videoId={props.details.video_url} />}
+        <p>{props.details.content}</p>
+        <p>{upvotes} upvotes</p>
 
-      <input
-        type="text"
-        placeholder="Enter security code"
-        value={securityCode}
-        onChange={(event) => setSecurityCode(event.target.value)}
-      />
-      {securityCode === secretCode ? (
-        <Link to={"edit/" + props.details.id}>
-          <button className="postButton">Edit/Delete</button>
-        </Link>
-      ) : (
-        <p>
-          Enter secret key to Edit/Delete
-        </p>
+        <input
+          type="text"
+          placeholder="Enter security code"
+          value={securityCode}
+          onChange={(event) => setSecurityCode(event.target.value)}
+        />
+        {securityCode === secretCode ? (
+          <Link to={"edit/" + props.details.id}>
+            <button className="postButton">Edit/Delete</button>
+          </Link>
+        ) : (
+          <p>
+            Enter secret key to Edit/Delete
+          </p>
+        )}
+
+        <button className="postButton" onClick={updateUpvotes}>
+          ⬆️
+        </button>
+        <button className="postButton" onClick={downvotes}>
+          ⬇️
+        </button>
+        </>
       )}
-
-      <button className="postButton" onClick={updateUpvotes}>
-        ⬆️
-      </button>
-      <button className="postButton" onClick={downvotes}>
-        ⬇️
-      </button>
     </div>
   );
 }
