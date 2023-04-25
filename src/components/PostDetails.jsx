@@ -79,6 +79,13 @@ export default function PostDetails(props) {
         {props.details.video_url && <Video videoId={props.details.video_url} />}
         <p>{props.details.content}</p>
         <p>{upvotes} upvotes</p>
+        <p>Posted on: {new Date(props.details.created_at).toLocaleString('en-US', {
+            month: '2-digit',
+            day: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+        })}</p>
 
         <input className="secretCode"
           type="password"

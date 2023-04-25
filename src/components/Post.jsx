@@ -20,6 +20,13 @@ export default function Post(props) {
           {props.image_url && <img src={props.image_url} />}
           {props.video_url && <Video videoId={props.video_url} />}
           <p>{props.upvote_count} upvotes</p>
+          <p>Posted on: {new Date(props.created_at).toLocaleString('en-US', {
+            month: '2-digit',
+            day: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+          })}</p>
           <Link to={"/" + props.id}>
             <button className="postButton">View Post</button>
           </Link>
