@@ -42,11 +42,11 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<!-- ![](WebDemo.gif) -->
+![](WebDemo.gif)
 
-<!-- Replace this with whatever GIF tool you used!
+<!-- Replace this with whatever GIF tool you used!-->
 GIF created with ... 
-LICEcap -->
+LICEcap
 
 ## Notes
 
