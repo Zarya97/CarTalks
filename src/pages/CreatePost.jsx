@@ -96,7 +96,7 @@ export default function CreatePost() {
           <label>Secret Code</label>
           <br />
           <input
-            type="text"
+            type="password"
             id="secret_code"
             name="secret_code"
             value={post.secret_code}
