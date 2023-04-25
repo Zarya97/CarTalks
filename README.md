@@ -37,6 +37,7 @@ The following **additional** features are implemented:
 
 * [x] List anything else that you added to improve the site's functionality!
     - [x] User can add image and video and view both at the same time.
+    - [x] **Each post has a down vote button on the post's page. Each click decreases its total votes count by one and users can down vote any number of times**
 
 ## Video Walkthrough
 
